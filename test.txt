@@ -1,0 +1,6 @@
+zebra apple pear
+apple bear
+newt orange Bear
+APPLE dog cat
+
+
