@@ -46,6 +46,32 @@ public class SinglyLinkedList {
 		return numNodes;
 	}
 
+	public void insert(Object value) {
+
+	}
+
+	public ListNode find(Object value) {
+		ListNode ref = null;
+
+		return ref;
+	}
+
+	public void remove() {
+
+	}
+
+	public void clear() {
+
+	}
+
+	public void loadData() {
+
+	}
+
+	public void printBackward() {
+
+	}
+
 	public void printList() {
 		ListNode temp = first;
 		while (temp != null) {
