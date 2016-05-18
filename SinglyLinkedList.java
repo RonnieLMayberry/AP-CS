@@ -19,7 +19,7 @@ public class SinglyLinkedList {
 		else
 			return first.getValue();
 	}
-
+	
 	public void addFirst(Object value) {
 		first = new ListNode(value, first);
 		numNodes++;
