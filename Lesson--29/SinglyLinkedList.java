@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+@SuppressWarnings("all")
 public class SinglyLinkedList {
 	private ListNode first, last;
 
@@ -68,7 +69,7 @@ public class SinglyLinkedList {
 
 	public void loadData() {
 		clear();
-		File afile = new File("file20");
+		File afile = new File("file3.txt");
 		Scanner fromfile = null;
 		int id, inv;
 
@@ -128,71 +129,65 @@ public class SinglyLinkedList {
 		boolean found = false;
 		Scanner keyboard = new Scanner(System.in);
 		int id = 0;
+
 		System.out.println();
-		while (true) {
-			found = false;
-			System.out.print("Please enter an ID number to search for (-1 to quit); -> ");
-			id = keyboard.nextInt();
-			if (id == -1) {
-				System.out.println("Quitting...\n");
-				break;
-			}
-			for (ListNode n = first; n != null; n = n.getNext()) {
-				Object obj = n.getValue();
-				Item i = (Item) obj;
-				int newid = i.getId();
-				if (id == newid) {
-					System.out.println("Id: " + newid + " Inv: " + i.getInv());
-					System.out.println();
-					found = true;
-					break;
-				}
-			}
-			if (found == false) {
-				System.out.println("Id: " + id + " No such part in stock!");
+		System.out.print("Please enter an ID number to search for -> ");
+		id = keyboard.nextInt();
+
+		for (ListNode n = first; n != null; n = n.getNext()) {
+			Object obj = n.getValue();
+			Item i = (Item) obj;
+			int newid = i.getId();
+			if (id == newid) {
+				System.out.println("Id: " + newid + " Inv: " + i.getInv());
 				System.out.println();
+				found = true;
 			}
 		}
-		keyboard.close();
+
+		if (found == false) {
+			System.out.println("Id: " + id + " No such part in stock!");
+			System.out.println();
+		}
 	}
 
 	public void remove() {
 		int id = 0;
+		boolean found = true;
 		Scanner keyboard = new Scanner(System.in);
-		System.out.println();
-		while (true) {
-			System.out.print("\nPlease enter an ID number to delete (-1 to quit): ");
-			id = keyboard.nextInt();
-			if (id == -1) {
-				System.out.println();
-				break;
-			}
-			if (first == null) {
-				System.out.println("List is empty!");
-				continue;
-			}
-			ListNode prev = first;
-			ListNode curr = first;
-			while ((curr != null) && (id != ((Item) (curr.getValue())).getId())) {
-				prev = curr;
-				curr = curr.getNext();
-			}
-			if (curr == null) {
-				System.out.println("Id # " + id + "  No such part in stock!");
-				continue;
-			}
-			if (curr == last) {
-				prev.setNext(null);
-				last = prev;
-			} else if (curr == first) {
-				first = first.getNext();
-				curr.setNext(null);
-			} else {
-				prev.setNext(curr.getNext());
-			}
-			System.out.println("Id #" + id + " was deleted!");
+
+		System.out.println();		
+		System.out.print("\nPlease enter an ID number to delete --> ");
+		
+		id = keyboard.nextInt();
+		
+		if (first == null) {
+			System.out.println("List is empty!");
 		}
-		keyboard.close();
+		
+		ListNode prev = first;
+		ListNode curr = first;
+		
+		while ((curr != null) && (id != ((Item) (curr.getValue())).getId())) {
+			prev = curr;
+			curr = curr.getNext();
+		}
+		
+		if (curr == null) {
+			System.out.println("Id # " + id + "  No such part in stock!");
+		}
+		
+		if (curr == last) {
+			prev.setNext(null);
+			last = prev;
+		} else if (curr == first) {
+			first = first.getNext();
+			curr.setNext(null);
+		} else {
+			prev.setNext(curr.getNext());
+		}
+		
+		System.out.println("Id #" + id + " was deleted!");
 	}
 
 	public void clear() {
