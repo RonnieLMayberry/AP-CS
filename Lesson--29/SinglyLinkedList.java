@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 @SuppressWarnings("all")
 public class SinglyLinkedList {
-	private ListNode first, last;
+	private SinglyListNode first, last;
 
 	public SinglyLinkedList() {
 		first = null;
@@ -20,18 +20,18 @@ public class SinglyLinkedList {
 		}
 	}
 
-	public ListNode getFirst2() {
+	public SinglyListNode getFirst2() {
 		return first;
 	}
 
 	public void addFirst(Object value) {
-		first = new ListNode(value, first);
+		first = new SinglyListNode(value, first);
 	}
 
 	public void printList() {
-		ListNode temp = first;
+		SinglyListNode temp = first;
 		while (temp != null) {
-			Item i = (Item) (temp.getValue());
+			SinglyItem i = (SinglyItem) (temp.getValue());
 			int id1 = i.getId();
 			int inv1 = i.getInv();
 			System.out.println("Id: " + id1 + ", " + "Inv: " + inv1);
@@ -41,11 +41,11 @@ public class SinglyLinkedList {
 
 	public void addLast(Object value) {
 		if (first != null) {
-			ListNode val = new ListNode(value, null);
+			SinglyListNode val = new SinglyListNode(value, null);
 			last.setNext(val);
 			last = val;
 		} else {
-			ListNode n = new ListNode(value, null);
+			SinglyListNode n = new SinglyListNode(value, null);
 			first = n;
 			last = n;
 		}
@@ -61,7 +61,7 @@ public class SinglyLinkedList {
 
 	public int size() {
 		int count = 0;
-		for (ListNode n = first; n != null; n = n.getNext()) {
+		for (SinglyListNode n = first; n != null; n = n.getNext()) {
 			count++;
 		}
 		return count;
@@ -69,7 +69,7 @@ public class SinglyLinkedList {
 
 	public void loadData() {
 		clear();
-		File afile = new File("file3.txt");
+		File afile = new File("file20.txt");
 		Scanner fromfile = null;
 		int id, inv;
 
@@ -82,21 +82,21 @@ public class SinglyLinkedList {
 		while (fromfile.hasNext()) {
 			id = fromfile.nextInt();
 			inv = fromfile.nextInt();
-			Item i = new Item(id, inv);
+			SinglyItem i = new SinglyItem(id, inv);
 			insert(i);
 		}
 		System.out.println("Loaded.");
 	}
 
-	public void insert(Item value) {
+	public void insert(SinglyItem value) {
 		if (first == null) {
 			addFirst(value);
 			last = first;
 			return;
 		}
-		ListNode prev = first;
-		ListNode curr = first;
-		ListNode n = new ListNode(value, null);
+		SinglyListNode prev = first;
+		SinglyListNode curr = first;
+		SinglyListNode n = new SinglyListNode(value, null);
 
 		while ((curr != null) && (value.compareTo(curr.getValue()) > 0)) {
 			prev = curr;
@@ -114,11 +114,11 @@ public class SinglyLinkedList {
 		}
 	}
 
-	public void printBackwards(ListNode n) {
+	public void printBackwards(SinglyListNode n) {
 		if (n != null) {
 			printBackwards(n.getNext());
 
-			Item i = (Item) (n.getValue());
+			SinglyItem i = (SinglyItem) (n.getValue());
 			int id = i.getId();
 			int inv = i.getInv();
 			System.out.println("Id: " + id + ", Inv: " + inv);
@@ -134,9 +134,9 @@ public class SinglyLinkedList {
 		System.out.print("Please enter an ID number to search for -> ");
 		id = keyboard.nextInt();
 
-		for (ListNode n = first; n != null; n = n.getNext()) {
+		for (SinglyListNode n = first; n != null; n = n.getNext()) {
 			Object obj = n.getValue();
-			Item i = (Item) obj;
+			SinglyItem i = (SinglyItem) obj;
 			int newid = i.getId();
 			if (id == newid) {
 				System.out.println("Id: " + newid + " Inv: " + i.getInv());
@@ -165,10 +165,10 @@ public class SinglyLinkedList {
 			System.out.println("List is empty!");
 		}
 		
-		ListNode prev = first;
-		ListNode curr = first;
+		SinglyListNode prev = first;
+		SinglyListNode curr = first;
 		
-		while ((curr != null) && (id != ((Item) (curr.getValue())).getId())) {
+		while ((curr != null) && (id != ((SinglyItem) (curr.getValue())).getId())) {
 			prev = curr;
 			curr = curr.getNext();
 		}
@@ -191,7 +191,7 @@ public class SinglyLinkedList {
 	}
 
 	public void clear() {
-		ListNode n = first;
+		SinglyListNode n = first;
 		while (first != null) {
 			n = first;
 			first = first.getNext();
@@ -203,7 +203,7 @@ public class SinglyLinkedList {
 	public String toString() {
 		String s = "[";
 
-		ListNode temp = first;
+		SinglyListNode temp = first;
 		while (temp != null) {
 			s += temp.getValue();
 			temp = temp.getNext();
