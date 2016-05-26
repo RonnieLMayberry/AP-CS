@@ -1,5 +1,3 @@
-
-@SuppressWarnings("all")
 public class TreeNode {
 	private Object value;
 	private TreeNode left;
@@ -11,16 +9,8 @@ public class TreeNode {
 		right = initRight;
 	}
 
-	public Object getValue() {
-		return value;
-	}
-
-	public TreeNode getLeft() {
-		return left;
-	}
-
-	public TreeNode getRight() {
-		return right;
+	public TreeNode(Object initValue) {
+		this(initValue, null, null);
 	}
 
 	public void setValue(Object theNewValue) {
@@ -33,5 +23,17 @@ public class TreeNode {
 
 	public void setRight(TreeNode theNewRight) {
 		right = theNewRight;
+	}
+
+	public Object getValue() {
+		return value;
+	}
+
+	public TreeNode getLeft() {
+		return left;
+	}
+
+	public TreeNode getRight() {
+		return right;
 	}
 }

@@ -1,4 +1,3 @@
-
 public class Item implements Comparable<Object> {
 	private int myId;
 	private int myInv;
@@ -16,16 +15,17 @@ public class Item implements Comparable<Object> {
 		return myInv;
 	}
 
-	public int compareTo(Object other) {
-		return myId - ((Item) other).myId;
+	public int compareTo(Object otherObject) {
+		Item other = (Item) otherObject;
+
+		return myId - other.myId;
 	}
 
-	public boolean equals(Item other) {
-		return this.compareTo(other) == 0;
+	public boolean equals(Object otherObject) {
+		return this.compareTo(otherObject) == 0;
 	}
 
 	public String toString() {
-		return "Id=" + myId + ",Inv=" + myInv;
+		return "Id: " + myId + ",Inv: " + myInv;
 	}
-
 }
